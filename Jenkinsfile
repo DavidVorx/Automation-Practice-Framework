@@ -24,7 +24,7 @@ pipeline {
         stage('Test') {
             steps {
                 // Run the tests using Maven
-                bats 'mvn test'
+                bat 'mvn test'
             }
         }
     }
