@@ -92,12 +92,5 @@ public class LoginRegisterTest {
         loginPage.clickDeleteAccount();
         loginPage.isAccountDeletedVisible();
 
-
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
     }
 }
