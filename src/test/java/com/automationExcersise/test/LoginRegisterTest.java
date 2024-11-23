@@ -91,6 +91,5 @@ public class LoginRegisterTest {
         loginPage.isUserLoggedIn();
         loginPage.clickDeleteAccount();
         loginPage.isAccountDeletedVisible();
-
     }
 }

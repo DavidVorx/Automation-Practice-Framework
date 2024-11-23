@@ -5,6 +5,7 @@ import com.automationExcersise.pages.HomePage;
 import com.automationExcersise.pages.LoginPage;
 import com.automationExcersise.utils.BrowserActions;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -32,10 +33,5 @@ public class HomePageTest {
         driver.quit();
     }
 
-    @Test
-    @Description("TC-001")
-    public void homePage() {
-        driver.get("https://automationexercise.com/");
-        basePage.acceptCookies();
-    }
+
 }

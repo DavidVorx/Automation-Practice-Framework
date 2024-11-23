@@ -5,14 +5,13 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import java.time.Duration;
 
 public class BrowserActions {
     private WebDriver driver;
-    private WebDriverWait wait;
 
     public BrowserActions(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, 10);
     }
 
     public void goTo(String url) {
@@ -38,6 +37,7 @@ public class BrowserActions {
             System.out.println("WebDriver setup complete.");
             System.out.println("Maximizing the browser window");
             driver.manage().window().maximize();
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
             return driver;
 
         } catch (Exception e) {
@@ -102,7 +102,7 @@ public class BrowserActions {
     public void waitForElement(String xpath) {
         try {
             System.out.println("Waiting for the element " + xpath + " to be visible");
-            new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
+            new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
         } catch (TimeoutException e) {
             System.err.println("Error: Tiempo de espera excedido para el elemento " + xpath);
             throw e; // Re-throw the exception
@@ -113,7 +113,7 @@ public class BrowserActions {
     public boolean isElementNotVisible(String xpath) {
         try {
             System.out.println("Checking if element " + xpath + " is not visible");
-            return wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(xpath)));
+            return new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(xpath)));
         } catch (TimeoutException e) {
             System.err.println("Element " + xpath + " is still visible after waiting");
             return false;
@@ -124,7 +124,7 @@ public class BrowserActions {
     public boolean isElementVisible(String xpath) {
         try {
             System.out.println("Checking if element " + xpath + " is visible");
-            WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
+            WebElement element = new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
             return element != null;
         } catch (TimeoutException e) {
             System.err.println("Element " + xpath + " is not visible after waiting");
