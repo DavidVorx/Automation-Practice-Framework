@@ -11,9 +11,8 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import org.openqa.selenium.WebDriver;
-import com.automationExcersise.pages.HomePage;
-import com.automationExcersise.pages.LoginPage;
-import com.automationExcersise.pages.BasePage;
+import org.testng.Assert;
+
 
 public class LoginRegisterTest {
 
@@ -86,7 +85,7 @@ public class LoginRegisterTest {
         loginPage.enterZipCode(zipCode);
         loginPage.enterMobilePhone(mobilePhone);
         loginPage.clickCreateAccountButton();
-        loginPage.isAccountCreatedVisible();
+        Assert.assertTrue(loginPage.isAccountCreatedVisible());
         loginPage.clickContinueButton();
         loginPage.isUserLoggedIn();
         loginPage.clickDeleteAccount();
